@@ -1,4 +1,4 @@
-package pessoas;
+package pooClasses;
 
 public class Cliente {
     public String cpf ;

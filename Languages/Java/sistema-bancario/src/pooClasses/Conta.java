@@ -1,4 +1,4 @@
-import pessoas.Cliente;
+package pooClasses;
 
 public class Conta {
     private Cliente titular ;

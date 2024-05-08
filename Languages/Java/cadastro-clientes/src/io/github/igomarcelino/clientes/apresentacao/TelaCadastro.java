@@ -2,6 +2,7 @@ package io.github.igomarcelino.clientes.apresentacao;
 
 import io.github.igomarcelino.clientes.dominio.Cliente;
 import io.github.igomarcelino.clientes.dominio.enums.TipoSexo;
+import io.github.igomarcelino.clientes.logicanegocio.LogicaFake;
 import org.w3c.dom.Text;
 
 import javax.swing.*;
@@ -97,8 +98,9 @@ public class TelaCadastro extends JFrame {
                 cliente.setCpf(fieldCpf.getText());
                 cliente.setSexo((TipoSexo) boxSexo.getSelectedItem());
 
+                LogicaFake logicaFake = new LogicaFake();
+                logicaFake.salvar(cliente);
 
-                JOptionPane.showMessageDialog(null,cliente.getNome()+" " + cliente.getCpf());
 
             }
         };

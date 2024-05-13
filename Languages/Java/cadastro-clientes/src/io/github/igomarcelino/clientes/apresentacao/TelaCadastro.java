@@ -2,6 +2,7 @@ package io.github.igomarcelino.clientes.apresentacao;
 
 import io.github.igomarcelino.clientes.dominio.Cliente;
 import io.github.igomarcelino.clientes.dominio.enums.TipoSexo;
+import io.github.igomarcelino.clientes.dominio.exceptions.CpfInvalidoException;
 import io.github.igomarcelino.clientes.logicanegocio.Cadastro;
 import io.github.igomarcelino.clientes.logicanegocio.LogicaCadastroMemoria;
 import io.github.igomarcelino.clientes.logicanegocio.LogicaFake;
@@ -106,8 +107,12 @@ public class TelaCadastro extends JFrame {
                 cliente.setSexo((TipoSexo) boxSexo.getSelectedItem());
 
                 LogicaCadastroMemoria logicaFake = new LogicaCadastroMemoria();
-                logicaFake.salvar(cliente);
-                logicaFake.imprimirCliente();
+                try {
+                    logicaFake.salvar(cliente);
+                    logicaFake.imprimirCliente();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
 
 
             }

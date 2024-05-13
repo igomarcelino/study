@@ -1,10 +1,12 @@
 package io.github.igomarcelino.clientes.logicanegocio;
 
 import io.github.igomarcelino.clientes.dominio.Cliente;
+import io.github.igomarcelino.clientes.dominio.exceptions.CpfInvalidoException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 public class LogicaCadastroMemoria implements Cadastro<Cliente> {
 
@@ -16,9 +18,11 @@ public class LogicaCadastroMemoria implements Cadastro<Cliente> {
     }
 
     @Override
-    public void salvar(Cliente cliente) {
+    public void salvar(Cliente cliente) throws CpfInvalidoException {
 
+        ValidarCliente.validarCliente(cliente); // validador que contem as exceptions a serem lancadas
         this.clienteList.add(cliente); // metodo salvar recebe um cliente e o metodo add(cliente) adiciona esse cliente na lista .
+
     }
 
     @Override

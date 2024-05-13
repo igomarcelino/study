@@ -5,7 +5,7 @@ import io.github.igomarcelino.clientes.dominio.enums.TipoSexo;
 import java.util.Arrays;
 import java.util.UUID;
 
-public class Cliente {
+public class Cliente implements Comparable<Cliente> {
     private UUID codigo;
     private String nome;
     private String cpf;
@@ -91,6 +91,11 @@ public class Cliente {
         int result = getNome().hashCode();
         result = 31 * result + getCpf().hashCode();
         return result;
+    }
+
+    @Override
+    public int compareTo(Cliente o) {
+        return this.nome.compareTo(o.getNome());
     }
 }
 

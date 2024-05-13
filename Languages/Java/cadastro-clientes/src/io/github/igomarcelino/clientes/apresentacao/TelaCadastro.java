@@ -2,6 +2,8 @@ package io.github.igomarcelino.clientes.apresentacao;
 
 import io.github.igomarcelino.clientes.dominio.Cliente;
 import io.github.igomarcelino.clientes.dominio.enums.TipoSexo;
+import io.github.igomarcelino.clientes.logicanegocio.Cadastro;
+import io.github.igomarcelino.clientes.logicanegocio.LogicaCadastroMemoria;
 import io.github.igomarcelino.clientes.logicanegocio.LogicaFake;
 import org.w3c.dom.Text;
 
@@ -9,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class TelaCadastro extends JFrame {
 
@@ -21,10 +24,12 @@ public class TelaCadastro extends JFrame {
         private JComboBox boxSexo;
         private JButton btnSalvar;
 
-
+        private Cadastro<Cliente> clienteCadastro;
 
 
     public TelaCadastro()  {
+
+        clienteCadastro = new LogicaCadastroMemoria();
         construirTela();
     }
 
@@ -85,6 +90,8 @@ public class TelaCadastro extends JFrame {
         ActionListener acaoBotaoSalvar = this.botaoSalvar();// instancia do listener
         btnSalvar.addActionListener(acaoBotaoSalvar); // adicionando a acao do listener
 
+
+
         getContentPane().add(btnSalvar);
 
     }
@@ -98,8 +105,9 @@ public class TelaCadastro extends JFrame {
                 cliente.setCpf(fieldCpf.getText());
                 cliente.setSexo((TipoSexo) boxSexo.getSelectedItem());
 
-                LogicaFake logicaFake = new LogicaFake();
+                LogicaCadastroMemoria logicaFake = new LogicaCadastroMemoria();
                 logicaFake.salvar(cliente);
+                logicaFake.imprimirCliente();
 
 
             }

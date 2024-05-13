@@ -8,9 +8,9 @@ import java.util.LinkedList;
 public class Main {
     public static void main(String[] args) {
 
-        /*TelaCadastro telaCadastro = new TelaCadastro();
+        TelaCadastro telaCadastro = new TelaCadastro();
 
-        telaCadastro.setVisible(true);*/
+        telaCadastro.setVisible(true);
 
 
 

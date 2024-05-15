@@ -1,8 +1,7 @@
 package io.github.igomarcelino.sistema_cadastro_teste.dominio;
 
+import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.EstadosBrasileiros;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.TipoSexo;
-
-import java.util.Date;
 
 
 public class Cliente {
@@ -10,18 +9,18 @@ public class Cliente {
     private String nome;
     private String CPF;
     private TipoSexo tipoSexo;
-    private Date dataNascimento;
+    private String dataNascimento;
     private String rua;
     private String numero;
     private String bairro;
     private String cidade;
-    private String estado;
+    private EstadosBrasileiros estado;
     private String telefone;
 
     public Cliente() {
     }
 
-    public Cliente(String nome, String CPF, TipoSexo tipoSexo, Date dataNascimento, String rua, String numero, String bairro, String cidade, String estado, String telefone) {
+    public Cliente(String nome, String CPF, TipoSexo tipoSexo, String dataNascimento, String rua, String numero, String bairro, String cidade, EstadosBrasileiros estado, String telefone) {
         this.nome = nome;
         this.CPF = CPF;
         this.tipoSexo = tipoSexo;
@@ -58,11 +57,11 @@ public class Cliente {
         this.tipoSexo = tipoSexo;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -98,11 +97,11 @@ public class Cliente {
         this.cidade = cidade;
     }
 
-    public String getEstado() {
+    public EstadosBrasileiros getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EstadosBrasileiros estado) {
         this.estado = estado;
     }
 

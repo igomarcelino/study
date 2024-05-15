@@ -1,12 +1,19 @@
 package io.github.igomarcelino.sistema_cadastro_teste.apresentacao;
 
+import io.github.igomarcelino.sistema_cadastro_teste.dominio.Cliente;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.EstadosBrasileiros;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.TipoSexo;
+import io.github.igomarcelino.sistema_cadastro_teste.logica.BancoDeDadosFake;
+import io.github.igomarcelino.sistema_cadastro_teste.logica.Cadastro;
 
+import javax.accessibility.AccessibleRelation;
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
-import java.util.Calendar;
+
+import static io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.TipoSexo.M;
 
 public class TelaCadastro extends JFrame {
 
@@ -34,11 +41,19 @@ public class TelaCadastro extends JFrame {
     private JComboBox<EstadosBrasileiros> comboBoxEstado;
     private JLabel labelTelefone;
     private JTextField textTelefone;
+    private JButton btnSalvar;
+    private JButton btnFechar;
+
+    private Cadastro<Cliente> bancoMemoria;
+
+    // construtor
     public TelaCadastro() {
 
+        bancoMemoria = new BancoDeDadosFake();
         construirTela();
     }
 
+    // metodos
     public void construirTela(){
 
         setSize(600,600);
@@ -46,11 +61,8 @@ public class TelaCadastro extends JFrame {
         setLayout(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        MaskFormatter dataFormat;
-
-
-
         adicionarCampos();
+        adicionarBotao();
     }
 
     public void adicionarCampos(){
@@ -72,7 +84,8 @@ public class TelaCadastro extends JFrame {
          labelSexo = new JLabel("sexo: ");
          labelSexo.setBounds(20,100,60,20);
          getContentPane().add(labelSexo);
-         comboBoxTipoSexo = new JComboBox<TipoSexo>(TipoSexo.values());
+         TipoSexo[] tipoSexo = {null, M,TipoSexo.F,TipoSexo.O};  // JCOmbobox pede um array para mostrar seus campos
+         comboBoxTipoSexo = new JComboBox<TipoSexo>(tipoSexo);
          comboBoxTipoSexo.setBounds(70,100,50,20);
          getContentPane().add(comboBoxTipoSexo);
 
@@ -147,4 +160,75 @@ public class TelaCadastro extends JFrame {
         getContentPane().add(textTelefone);
 
     }
+
+    public void adicionarBotao(){
+
+        btnSalvar = new JButton("Salvar");
+        btnSalvar.setBounds(20,420,80,20);
+        getContentPane().add(btnSalvar);
+
+        ActionListener botaoSalvar = this.salvarCliente();
+        btnSalvar.addActionListener(botaoSalvar);
+
+        btnFechar = new JButton("Fechar");
+        btnFechar.setBounds(110,420,90,20);
+        getContentPane().add(btnFechar);
+
+        ActionListener botaoFechar = this.fecharJanela();
+        btnFechar.addActionListener(botaoFechar);
+
+
+    }
+
+    public ActionListener salvarCliente(){
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Cliente cliente = new Cliente();
+                cliente.setNome(textNome.getText());
+                cliente.setCPF(textCPF.getText());
+                cliente.setTipoSexo((TipoSexo) comboBoxTipoSexo.getSelectedItem());
+                cliente.setDataNascimento(textDataNascimento.getText());
+                cliente.setRua(textRua.getText());
+                cliente.setNumero(textNumerocasa.getText());
+                cliente.setBairro(textBairro.getText());
+                cliente.setCidade(textCidade.getText());
+                cliente.setEstado((EstadosBrasileiros) comboBoxEstado.getSelectedItem());
+                cliente.setTelefone(textTelefone.getText());
+
+                bancoMemoria.salvarCliente(cliente);
+                bancoMemoria.imprimirCliente(cliente);
+                limparCampos();
+
+
+            }
+        };
+    }
+
+    public void limparCampos() {
+        textNome.setText(null);
+        textCPF.setText(null);
+        comboBoxTipoSexo.setSelectedItem(null);
+        textDataNascimento.setText(null);
+        textRua.setText(null);
+        textNumerocasa.setText(null);
+        textBairro.setText(null);
+        textCidade.setText(null);
+        comboBoxEstado.setSelectedItem(null);
+        textTelefone.setText(null);
+
+    }
+
+    public ActionListener fecharJanela(){
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+
+            }
+        };
+    }
 }
+
+
+

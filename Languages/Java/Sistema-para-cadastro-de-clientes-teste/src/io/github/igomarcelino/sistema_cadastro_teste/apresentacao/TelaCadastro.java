@@ -44,6 +44,7 @@ public class TelaCadastro extends JFrame {
     private JTextField textTelefone;
     private JButton btnSalvar;
     private JButton btnFechar;
+    private JButton btnLimparCampos;
 
     private Cadastro<Cliente> bancoMemoria;
 
@@ -171,12 +172,21 @@ public class TelaCadastro extends JFrame {
         ActionListener botaoSalvar = this.salvarCliente();
         btnSalvar.addActionListener(botaoSalvar);
 
+        btnLimparCampos = new JButton("Limpar");
+        btnLimparCampos.setBounds(110,420,90,20);
+        getContentPane().add(btnLimparCampos);
+
+        ActionListener botaoLimparCampos = this.botaoLimparCampos();
+        btnLimparCampos.addActionListener(botaoLimparCampos);
+
         btnFechar = new JButton("Fechar");
-        btnFechar.setBounds(110,420,90,20);
+        btnFechar.setBounds(210,420,90,20);
         getContentPane().add(btnFechar);
 
         ActionListener botaoFechar = this.fecharJanela();
         btnFechar.addActionListener(botaoFechar);
+
+
 
 
     }
@@ -197,7 +207,6 @@ public class TelaCadastro extends JFrame {
                 cliente.setEstado((EstadosBrasileiros) comboBoxEstado.getSelectedItem());
                 cliente.setTelefone(textTelefone.getText());
 
-
                 try {
                     bancoMemoria.salvarCliente(cliente);
                     bancoMemoria.imprimirCliente(cliente);
@@ -205,9 +214,15 @@ public class TelaCadastro extends JFrame {
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null,ex.getMessage());
                 }
+            }
+        };
+    }
 
-
-
+    public ActionListener botaoLimparCampos(){
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                limparCampos();
             }
         };
     }
@@ -225,6 +240,8 @@ public class TelaCadastro extends JFrame {
         textTelefone.setText(null);
 
     }
+
+
 
     public ActionListener fecharJanela(){
         return new ActionListener() {

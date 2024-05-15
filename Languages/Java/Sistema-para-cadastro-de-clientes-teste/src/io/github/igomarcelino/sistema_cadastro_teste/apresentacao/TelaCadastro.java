@@ -3,6 +3,7 @@ package io.github.igomarcelino.sistema_cadastro_teste.apresentacao;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Cliente;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.EstadosBrasileiros;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.TipoSexo;
+import io.github.igomarcelino.sistema_cadastro_teste.dominio.Exceptions.CpfValidoException;
 import io.github.igomarcelino.sistema_cadastro_teste.logica.BancoDeDadosFake;
 import io.github.igomarcelino.sistema_cadastro_teste.logica.Cadastro;
 
@@ -196,9 +197,15 @@ public class TelaCadastro extends JFrame {
                 cliente.setEstado((EstadosBrasileiros) comboBoxEstado.getSelectedItem());
                 cliente.setTelefone(textTelefone.getText());
 
-                bancoMemoria.salvarCliente(cliente);
-                bancoMemoria.imprimirCliente(cliente);
-                limparCampos();
+
+                try {
+                    bancoMemoria.salvarCliente(cliente);
+                    bancoMemoria.imprimirCliente(cliente);
+                    limparCampos();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                }
+
 
 
             }

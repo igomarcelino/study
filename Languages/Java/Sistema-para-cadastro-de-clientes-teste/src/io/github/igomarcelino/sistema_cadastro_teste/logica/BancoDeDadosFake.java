@@ -1,6 +1,7 @@
 package io.github.igomarcelino.sistema_cadastro_teste.logica;
 
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Cliente;
+import io.github.igomarcelino.sistema_cadastro_teste.dominio.Exceptions.CpfValidoException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +11,15 @@ public class BancoDeDadosFake implements Cadastro<Cliente> {
     private List<Cliente> cliente;
 
     public BancoDeDadosFake() {
+
+
         this.cliente = new ArrayList<>();
     }
 
     @Override
-    public void salvarCliente(Cliente cliente) {
+    public void salvarCliente(Cliente cliente) throws CpfValidoException {
 
+        ValidaCliente.validarCliente(cliente);
         this.cliente.add(cliente);
     }
 

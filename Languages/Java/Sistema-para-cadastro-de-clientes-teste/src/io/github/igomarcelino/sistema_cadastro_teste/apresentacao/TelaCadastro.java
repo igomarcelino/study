@@ -288,7 +288,7 @@ public class TelaCadastro extends JFrame {
                     File fotoSelecionada = jFileChooser.getSelectedFile();
                     String caminhoFoto = fotoSelecionada.getAbsolutePath();
 
-                    Image novaFoto = new ImageIcon(caminhoFoto).getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH);
+                    Image novaFoto = new ImageIcon(caminhoFoto).getImage().getScaledInstance(200,200,Image.SCALE_SMOOTH);
                     ImageIcon novaFotoRenderizada = new ImageIcon(novaFoto);
                     labelImagem.setIcon(novaFotoRenderizada);
                 }

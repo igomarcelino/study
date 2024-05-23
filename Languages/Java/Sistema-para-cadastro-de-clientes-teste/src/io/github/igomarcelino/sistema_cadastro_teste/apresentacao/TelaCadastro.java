@@ -10,8 +10,11 @@ import io.github.igomarcelino.sistema_cadastro_teste.logica.Cadastro;
 import javax.accessibility.AccessibleRelation;
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.net.URL;
 import java.text.ParseException;
 
 import static io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.TipoSexo.M;
@@ -45,6 +48,8 @@ public class TelaCadastro extends JFrame {
     private JButton btnSalvar;
     private JButton btnFechar;
     private JButton btnLimparCampos;
+    private JLabel labelImagem;
+    private JButton btnAdicionarImagem;
 
     private Cadastro<Cliente> bancoMemoria;
 
@@ -67,6 +72,7 @@ public class TelaCadastro extends JFrame {
         adicionarBotao();
     }
 
+    //Metodo para adicionar os label e campos na tela
     public void adicionarCampos(){
 
         labelNome = new JLabel("Nome: ");
@@ -161,6 +167,13 @@ public class TelaCadastro extends JFrame {
         textTelefone.setBounds(90,380,120,20);
         getContentPane().add(textTelefone);
 
+        labelImagem = new JLabel();
+        labelImagem.setBounds(350,220,200,200);
+        labelImagem.setIcon(adicionarImagemPadrao());
+        getContentPane().add(labelImagem);
+
+
+
     }
 
     public void adicionarBotao(){
@@ -169,28 +182,30 @@ public class TelaCadastro extends JFrame {
         btnSalvar.setBounds(20,420,80,20);
         getContentPane().add(btnSalvar);
 
-        ActionListener botaoSalvar = this.salvarCliente();
-        btnSalvar.addActionListener(botaoSalvar);
+        btnSalvar.addActionListener(salvarCliente());
 
         btnLimparCampos = new JButton("Limpar");
         btnLimparCampos.setBounds(110,420,90,20);
         getContentPane().add(btnLimparCampos);
 
-        ActionListener botaoLimparCampos = this.botaoLimparCampos();
-        btnLimparCampos.addActionListener(botaoLimparCampos);
+        btnLimparCampos.addActionListener(botaoLimparCampos());
 
         btnFechar = new JButton("Fechar");
         btnFechar.setBounds(210,420,90,20);
         getContentPane().add(btnFechar);
 
-        ActionListener botaoFechar = this.fecharJanela();
-        btnFechar.addActionListener(botaoFechar);
+        btnFechar.addActionListener(fecharJanela());
 
+        btnAdicionarImagem = new JButton("Adicionar foto");
+        btnAdicionarImagem.setBounds(370,440,150,20);
+        getContentPane().add(btnAdicionarImagem);
+        btnAdicionarImagem.addActionListener(adicionarImagem());
 
 
 
     }
 
+    //ActionerListener para salvar cliente
     public ActionListener salvarCliente(){
         return new ActionListener() {
             @Override
@@ -217,7 +232,7 @@ public class TelaCadastro extends JFrame {
             }
         };
     }
-
+    //ActionerLister para limpar campos
     public ActionListener botaoLimparCampos(){
         return new ActionListener() {
             @Override
@@ -226,7 +241,7 @@ public class TelaCadastro extends JFrame {
             }
         };
     }
-
+    // Metodo para limpar campos ao salvar
     public void limparCampos() {
         textNome.setText(null);
         textCPF.setText(null);
@@ -240,9 +255,7 @@ public class TelaCadastro extends JFrame {
         textTelefone.setText(null);
 
     }
-
-
-
+    // ActionListener para fechar a janela
     public ActionListener fecharJanela(){
         return new ActionListener() {
             @Override
@@ -252,7 +265,38 @@ public class TelaCadastro extends JFrame {
             }
         };
     }
+
+    // Metodo para adicionar o campo de imagem padrao
+
+    public Icon adicionarImagemPadrao(){
+        String caminho = "/io/github/igomarcelino/sistema_cadastro_teste/utilitarios/imagens/avatarFotoPadrao.png";
+        URL url = getClass().getResource(caminho);
+        Image preIcon = new ImageIcon(url).getImage().getScaledInstance(200,200,Image.SCALE_SMOOTH);
+        ImageIcon iconPadrao = new ImageIcon(preIcon);
+
+        return iconPadrao;
+    }
+
+    public ActionListener adicionarImagem(){
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser jFileChooser = new JFileChooser(); // instancia objeto JfileChooser
+                int opcao = jFileChooser.showOpenDialog(null); // salva um int com o retorno da escolha do arqvuivo
+
+                if(opcao == JFileChooser.APPROVE_OPTION){ // se o retorno do arquivo for igual o valor da constante Aprove_Option
+                    File fotoSelecionada = jFileChooser.getSelectedFile();
+                    String caminhoFoto = fotoSelecionada.getAbsolutePath();
+
+                    Image novaFoto = new ImageIcon(caminhoFoto).getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH);
+                    ImageIcon novaFotoRenderizada = new ImageIcon(novaFoto);
+                    labelImagem.setIcon(novaFotoRenderizada);
+                }
+            }
+        };
+    }
 }
+
 
 
 

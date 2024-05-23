@@ -1,8 +1,11 @@
 package io.github.igomarcelino.clientes.logicanegocio;
 
+import io.github.igomarcelino.clientes.apresentacao.TelaCadastro;
 import io.github.igomarcelino.clientes.dominio.Cliente;
 import io.github.igomarcelino.clientes.dominio.exceptions.CpfInvalidoException;
+import io.github.igomarcelino.clientes.utilitarios.PersistirFoto;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -22,6 +25,8 @@ public class LogicaCadastroMemoria implements Cadastro<Cliente> {
 
         ValidarCliente.validarCliente(cliente); // validador que contem as exceptions a serem lancadas
         this.clienteList.add(cliente); // metodo salvar recebe um cliente e o metodo add(cliente) adiciona esse cliente na lista .
+        PersistirFoto.salvarFotos(cliente.getNome()+".jpg", cliente.getFoto());
+        JOptionPane.showMessageDialog(null,"Cadastro realizado com sucesso.");
 
     }
 

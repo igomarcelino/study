@@ -10,13 +10,13 @@ public class Cliente implements Comparable<Cliente> {
     private String nome;
     private String cpf;
     private TipoSexo sexo;
-    private Byte[] foto;
+    private byte[] foto;
 
     public Cliente() {
         this.codigo = UUID.randomUUID();
     }
 
-    public Cliente(String nome, String cpf, TipoSexo sexo, Byte[] foto) {
+    public Cliente(String nome, String cpf, TipoSexo sexo, byte[] foto) {
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;
@@ -56,11 +56,11 @@ public class Cliente implements Comparable<Cliente> {
         this.sexo = sexo;
     }
 
-    public Byte[] getFoto() {
+    public byte[] getFoto() {
         return foto;
     }
 
-    public void setFoto(Byte[] foto) {
+    public void setFoto(byte[] foto) {
         this.foto = foto;
     }
 

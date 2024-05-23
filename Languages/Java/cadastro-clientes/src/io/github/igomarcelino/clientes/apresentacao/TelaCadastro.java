@@ -2,17 +2,16 @@ package io.github.igomarcelino.clientes.apresentacao;
 
 import io.github.igomarcelino.clientes.dominio.Cliente;
 import io.github.igomarcelino.clientes.dominio.enums.TipoSexo;
-import io.github.igomarcelino.clientes.dominio.exceptions.CpfInvalidoException;
 import io.github.igomarcelino.clientes.logicanegocio.Cadastro;
+import io.github.igomarcelino.clientes.utilitarios.ConverterIcoParaByteArray;
 import io.github.igomarcelino.clientes.logicanegocio.LogicaCadastroMemoria;
-import io.github.igomarcelino.clientes.logicanegocio.LogicaFake;
-import org.w3c.dom.Text;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.io.File;
+import java.net.URL;
 
 public class TelaCadastro extends JFrame {
 
@@ -22,8 +21,10 @@ public class TelaCadastro extends JFrame {
         private JLabel labelCpf;
         private TextField fieldCpf;
         private JLabel labelSexo;
+        private JLabel labelImagem;
         private JComboBox boxSexo;
         private JButton btnSalvar;
+        private JButton btnAlterarFoto;
 
         private Cadastro<Cliente> clienteCadastro;
 
@@ -42,6 +43,7 @@ public class TelaCadastro extends JFrame {
 
         adicionarCampos();
         adicionarBotao();
+        adicionarImagem();
     }
 
     // add labels and fields on screen
@@ -105,11 +107,14 @@ public class TelaCadastro extends JFrame {
                 cliente.setNome(fieldNome.getText());
                 cliente.setCpf(fieldCpf.getText());
                 cliente.setSexo((TipoSexo) boxSexo.getSelectedItem());
+                byte[] bytes = ConverterIcoParaByteArray.conversor(labelImagem.getIcon());
+                cliente.setFoto(bytes);
 
                 LogicaCadastroMemoria logicaFake = new LogicaCadastroMemoria();
                 try {
                     logicaFake.salvar(cliente);
                     logicaFake.imprimirCliente();
+                    zerarCampos();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage());
                 }
@@ -119,5 +124,54 @@ public class TelaCadastro extends JFrame {
         };
     }
 
+    public void adicionarImagem(){
 
+        ImageIcon ico = imagemPadrao();
+
+        labelImagem = new JLabel();
+        labelImagem.setIcon(ico);
+        labelImagem.setBounds(350,20,200,200);
+        getContentPane().add(labelImagem);
+
+        btnAlterarFoto = new JButton("Alterar foto");
+        btnAlterarFoto.setBounds(360,210,130,20);
+        btnAlterarFoto.addActionListener(alterarFotoActionListener());
+        getContentPane().add(btnAlterarFoto);
+
+    }
+
+    private ImageIcon imagemPadrao() {
+        String caminhoImagem = "/io/github/igomarcelino/clientes/imagens/arquivos-de-imagem.png";
+
+        URL url = getClass().getResource(caminhoImagem);
+
+        Image imageIcon = new ImageIcon(url).getImage().getScaledInstance(200,200,Image.SCALE_SMOOTH);
+        ImageIcon ico = new ImageIcon(imageIcon);
+        return ico;
+    }
+
+    private void zerarCampos(){
+        fieldNome.setText("");
+        fieldCpf.setText("");
+        boxSexo.setSelectedItem(null);
+        labelImagem.setIcon(this.imagemPadrao());
+    }
+
+    private ActionListener alterarFotoActionListener(){
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser jFileChooser = new JFileChooser();
+                int opcao = jFileChooser.showOpenDialog(null);
+
+                if (opcao == JFileChooser.APPROVE_OPTION){
+                    File arquivoCapturado = jFileChooser.getSelectedFile();
+                    String arquivoSelecionado = arquivoCapturado.getAbsolutePath();
+
+                    Image newFoto = new ImageIcon(arquivoSelecionado).getImage().getScaledInstance(200,200,Image.SCALE_SMOOTH);
+                    labelImagem.setIcon(new ImageIcon(newFoto));
+                }
+            }
+        };
+    }
 }

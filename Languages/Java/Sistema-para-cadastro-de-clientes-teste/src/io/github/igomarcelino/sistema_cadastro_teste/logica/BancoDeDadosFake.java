@@ -2,7 +2,10 @@ package io.github.igomarcelino.sistema_cadastro_teste.logica;
 
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Cliente;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Exceptions.CpfValidoException;
+import io.github.igomarcelino.sistema_cadastro_teste.utilitarios.ConverterFotoParaArray;
+import io.github.igomarcelino.sistema_cadastro_teste.utilitarios.PersistenciaDeFoto;
 
+import javax.imageio.plugins.jpeg.JPEGImageReadParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +24,7 @@ public class BancoDeDadosFake implements Cadastro<Cliente> {
 
         ValidaCliente.validarCliente(cliente);
         this.cliente.add(cliente);
+        PersistenciaDeFoto.persistirFotos(cliente.getNome()+".jpg",cliente.getFotoArray());
     }
 
     @Override

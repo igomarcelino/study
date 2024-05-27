@@ -16,11 +16,20 @@ public class Cliente {
     private String cidade;
     private EstadosBrasileiros estado;
     private String telefone;
+    private byte[] fotoArray;
+
+    public byte[] getFotoArray() {
+        return fotoArray;
+    }
+
+    public void setFotoArray(byte[] fotoArray) {
+        this.fotoArray = fotoArray;
+    }
 
     public Cliente() {
     }
 
-    public Cliente(String nome, String CPF, TipoSexo tipoSexo, String dataNascimento, String rua, String numero, String bairro, String cidade, EstadosBrasileiros estado, String telefone) {
+    public Cliente(String nome, String CPF, TipoSexo tipoSexo, String dataNascimento, String rua, String numero, String bairro, String cidade, EstadosBrasileiros estado, String telefone, byte[] fotoArray) {
         this.nome = nome;
         this.CPF = CPF;
         this.tipoSexo = tipoSexo;
@@ -31,6 +40,7 @@ public class Cliente {
         this.cidade = cidade;
         this.estado = estado;
         this.telefone = telefone;
+        this.fotoArray = fotoArray;
     }
 
     public String getNome() {

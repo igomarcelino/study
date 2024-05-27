@@ -6,6 +6,7 @@ import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.TipoSexo;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Exceptions.CpfValidoException;
 import io.github.igomarcelino.sistema_cadastro_teste.logica.BancoDeDadosFake;
 import io.github.igomarcelino.sistema_cadastro_teste.logica.Cadastro;
+import io.github.igomarcelino.sistema_cadastro_teste.utilitarios.ConverterFotoParaArray;
 
 import javax.accessibility.AccessibleRelation;
 import javax.swing.*;
@@ -222,6 +223,9 @@ public class TelaCadastro extends JFrame {
                 cliente.setEstado((EstadosBrasileiros) comboBoxEstado.getSelectedItem());
                 cliente.setTelefone(textTelefone.getText());
 
+                byte[] bytes = ConverterFotoParaArray.conversorFotoArray(labelImagem.getIcon());
+                cliente.setFotoArray(bytes);
+
                 try {
                     bancoMemoria.salvarCliente(cliente);
                     bancoMemoria.imprimirCliente(cliente);
@@ -269,7 +273,7 @@ public class TelaCadastro extends JFrame {
     // Metodo para adicionar o campo de imagem padrao
 
     public Icon adicionarImagemPadrao(){
-        String caminho = "/io/github/igomarcelino/sistema_cadastro_teste/utilitarios/imagens/avatarFotoPadrao.png";
+        String caminho = "/io/github/igomarcelino/sistema_cadastro_teste/utilitarios/imagens/avatarPadrao.png";
         URL url = getClass().getResource(caminho);
         Image preIcon = new ImageIcon(url).getImage().getScaledInstance(200,200,Image.SCALE_SMOOTH);
         ImageIcon iconPadrao = new ImageIcon(preIcon);

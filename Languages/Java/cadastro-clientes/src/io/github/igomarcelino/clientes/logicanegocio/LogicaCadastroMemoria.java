@@ -8,6 +8,7 @@ import io.github.igomarcelino.clientes.utilitarios.PersistirFoto;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
@@ -31,8 +32,7 @@ public class LogicaCadastroMemoria implements Cadastro<Cliente> {
     }
 
     @Override
-    public Cliente buscar(UUID codigo) {
-
+    public Optional<Cliente> buscar(UUID codigo) {
         Cliente clienteEncontrado = null;
         if(!clienteList.isEmpty()){
             for(Cliente cliente : clienteList){
@@ -42,24 +42,14 @@ public class LogicaCadastroMemoria implements Cadastro<Cliente> {
                 }
             }
         }
-
-        return clienteEncontrado;
+        return Optional.ofNullable(clienteEncontrado);
     }
 
     @Override
     public void deletar(UUID codigo) {
 
-        Cliente removerCliente = null;
-        if(!clienteList.isEmpty()){
-            for(Cliente cliente : clienteList){
-                if (cliente.getCodigo().equals(codigo)){
-                    removerCliente = cliente;
-                    break;
-                }
-            }
-            clienteList.remove(removerCliente);
-        }
-
+      // this.buscar(codigo).ifPresent(cliente -> clienteList.remove(cliente));
+        this.buscar(codigo).ifPresentOrElse(cliente -> clienteList.remove(cliente),()-> System.out.println("Cliente nao encontrado"));
     }
 
     @Override

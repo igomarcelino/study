@@ -2,6 +2,7 @@ package io.github.igomarcelino.clientes.logicanegocio;
 
 import io.github.igomarcelino.clientes.dominio.Cliente;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public class LogicaFake implements Cadastro<Cliente> {
@@ -12,7 +13,7 @@ public class LogicaFake implements Cadastro<Cliente> {
     }
 
     @Override
-    public Cliente buscar(UUID codigo) {
+    public Optional<Cliente> buscar(UUID codigo) {
         return null;
     }
 

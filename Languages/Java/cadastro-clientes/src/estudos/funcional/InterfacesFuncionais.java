@@ -21,8 +21,6 @@ public class InterfacesFuncionais {
     }
 
     public void supplier(){
-       Supplier<Cliente> proverCliente = () -> new Cliente("João Silva", "12345678901", TipoSexo.M, null);
-        System.out.println("Supplier: " + proverCliente.get());
 
 
 

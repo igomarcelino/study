@@ -20,27 +20,22 @@ public class EstudoOptional  {
 
     private static void clienteComStrem(){
 
-        var lista = new ArrayList<Cliente>();
+
         Cliente cliente1 = new Cliente("João Silva", "12345678901", TipoSexo.M, null);
         Cliente cliente2 = new Cliente("Maria Souza", "23456789012", TipoSexo.F, null);
         Cliente cliente3 = new Cliente("Pedro Oliveira", "34567890123", TipoSexo.M, null);
         Cliente cliente4 = new Cliente("Ana Pereira", "45678901234", TipoSexo.F, null);
         Cliente cliente5 = new Cliente("Lucas Almeida", "56789012345", TipoSexo.M, null);
 
-        List<Cliente> novosCliente = List.of(cliente1,cliente2,cliente3,cliente4,cliente5);
+        var lista = List.of(cliente1,cliente2,cliente3,cliente4,cliente5);
 
+        String nomesClientes = lista.stream().map(cliente -> cliente.getNome()).collect(Collectors.toList()).toString();
+        String cfpClientes = lista.stream().map(cliente -> cliente.getCpf()).collect(Collectors.toList()).toString();
 
-        List<String> nomeClientes = novosCliente.stream().map(cliente -> cliente.getNome()).collect(Collectors.toList());
-        List<String> cfpClientes = novosCliente.stream().map(cliente -> cliente.getCpf()).collect(Collectors.toList());
-
-
-        System.out.println("Nome de clientes: ");
-        System.out.println(nomeClientes);
-        System.out.println("Cpf de clientes: ");
-        System.out.println(cfpClientes);
-        
-
+        System.out.print("Nome de clientes: " + nomesClientes + "\n");
+        System.out.println("Cpf de clientes: " + cfpClientes + "\n");
     }
+
 
 
     private static void streamApiComFilter() {

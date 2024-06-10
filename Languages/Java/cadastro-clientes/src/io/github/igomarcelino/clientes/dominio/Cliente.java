@@ -10,6 +10,16 @@ public class Cliente implements Comparable<Cliente> {
     private String nome;
     private String cpf;
     private TipoSexo sexo;
+    private Integer idade;
+
+    public Integer getIdade() {
+        return idade;
+    }
+
+    public void setIdade(Integer idade) {
+        this.idade = idade;
+    }
+
     private byte[] foto;
 
     public Cliente() {
@@ -17,12 +27,13 @@ public class Cliente implements Comparable<Cliente> {
         System.out.println("Codigo cliente: " + this.codigo.toString());
     }
 
-    public Cliente(String nome, String cpf, TipoSexo sexo, byte[] foto) {
+    public Cliente(String nome, String cpf, TipoSexo sexo, byte[] foto, Integer idade) {
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;
         this.foto = foto;
         this.codigo = UUID.randomUUID();
+        this.idade = idade;
     }
 
     public UUID getCodigo() {

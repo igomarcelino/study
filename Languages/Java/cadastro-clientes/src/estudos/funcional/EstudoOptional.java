@@ -21,11 +21,11 @@ public class EstudoOptional  {
     private static void clienteComStrem(){
 
 
-        Cliente cliente1 = new Cliente("João Silva", "12345678901", TipoSexo.M, null);
-        Cliente cliente2 = new Cliente("Maria Souza", "23456789012", TipoSexo.F, null);
-        Cliente cliente3 = new Cliente("Pedro Oliveira", "34567890123", TipoSexo.M, null);
-        Cliente cliente4 = new Cliente("Ana Pereira", "45678901234", TipoSexo.F, null);
-        Cliente cliente5 = new Cliente("Lucas Almeida", "56789012345", TipoSexo.M, null);
+        Cliente cliente1 = new Cliente("João Silva", "12345678901", TipoSexo.M, null,40);
+        Cliente cliente2 = new Cliente("Maria Souza", "23456789012", TipoSexo.F, null,29);
+        Cliente cliente3 = new Cliente("Pedro Oliveira", "34567890123", TipoSexo.M, null,33);
+        Cliente cliente4 = new Cliente("Ana Pereira", "45678901234", TipoSexo.F, null,21);
+        Cliente cliente5 = new Cliente("Lucas Almeida", "56789012345", TipoSexo.M, null,12);
 
         var lista = List.of(cliente1,cliente2,cliente3,cliente4,cliente5);
 
@@ -83,7 +83,7 @@ public class EstudoOptional  {
     }
 
     static void recuperarCliente(){
-        var cliente = new Cliente("Igo","12332112311", TipoSexo.M,null);
+        var cliente = new Cliente("Igo","12332112311", TipoSexo.M,null,22);
 
         Optional<Cliente> possivelCliente = Optional.ofNullable(cliente);
 
@@ -100,7 +100,7 @@ public class EstudoOptional  {
     }
 
     public static Optional<Cliente> clientePopulado(){
-        var cliente = new Cliente("Igo","12332112311", TipoSexo.M,new byte[]{});
+        var cliente = new Cliente("Igo","12332112311", TipoSexo.M,new byte[]{},33);
         return Optional.of(cliente);
     }
 

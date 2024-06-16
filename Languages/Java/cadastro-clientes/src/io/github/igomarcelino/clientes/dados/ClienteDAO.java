@@ -47,7 +47,7 @@ public class ClienteDAO {
             conexao.setString(2,cliente.getNome());
             conexao.setString(3,cliente.getSexo().name());
             conexao.setString(4,cliente.getCpf());
-            conexao.setInt(5,cliente.getIdade());
+            conexao.setInt(5,18);
             conexao.execute(); // executa o comando de insercao do cliente no banco
 
         }catch (SQLException e){
@@ -87,16 +87,12 @@ public class ClienteDAO {
             ResultSet resultado = conexao.executeQuery();
             while (resultado.next()){
 
-                String nome = resultado.getString("nome");
-                String cpf = resultado.getString("cpf");
-                String sexo = resultado.getString("sexo");
-                Integer idade = resultado.getInt("idade");
-
                 Cliente cliente = new Cliente();
-                cliente.setNome(nome);
-                cliente.setSexo(TipoSexo.valueOf(sexo));
-                cliente.setCpf(cpf);
-                cliente.setIdade(idade);
+                cliente.setCodigo(UUID.fromString(resultado.getString("codigo")));
+                cliente.setNome(resultado.getString("nome"));
+                cliente.setSexo(TipoSexo.valueOf(resultado.getString("sexo")));
+                cliente.setCpf(resultado.getString("cpf"));
+                cliente.setIdade(resultado.getInt("idade"));
 
                 exibeClientes.add(cliente);
             }

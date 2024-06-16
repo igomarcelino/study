@@ -1,8 +1,11 @@
 package io.github.igomarcelino.clientes.apresentacao;
 
+import io.github.igomarcelino.clientes.dados.ClienteDAO;
+import io.github.igomarcelino.clientes.dados.FabricaConexoes;
 import io.github.igomarcelino.clientes.dominio.Cliente;
 import io.github.igomarcelino.clientes.dominio.enums.TipoSexo;
 import io.github.igomarcelino.clientes.logicanegocio.Cadastro;
+import io.github.igomarcelino.clientes.logicanegocio.LogicaCadastroBancoDados;
 import io.github.igomarcelino.clientes.utilitarios.ConverterIcoParaByteArray;
 import io.github.igomarcelino.clientes.logicanegocio.LogicaCadastroMemoria;
 
@@ -31,7 +34,8 @@ public class TelaCadastro extends JFrame {
 
     public TelaCadastro()  {
 
-        clienteCadastro = new LogicaCadastroMemoria();
+        ClienteDAO clienteDAO =  new ClienteDAO(FabricaConexoes.criarConexao());
+        this.clienteCadastro = new LogicaCadastroBancoDados(clienteDAO);
         construirTela();
     }
 
@@ -109,11 +113,8 @@ public class TelaCadastro extends JFrame {
                 cliente.setSexo((TipoSexo) boxSexo.getSelectedItem());
                 byte[] bytes = ConverterIcoParaByteArray.conversor(labelImagem.getIcon());
                 cliente.setFoto(bytes);
-
-                LogicaCadastroMemoria logicaFake = new LogicaCadastroMemoria();
                 try {
-                    logicaFake.salvar(cliente);
-                    logicaFake.imprimirCliente();
+                    clienteCadastro.salvar(cliente);
                     zerarCampos();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage());

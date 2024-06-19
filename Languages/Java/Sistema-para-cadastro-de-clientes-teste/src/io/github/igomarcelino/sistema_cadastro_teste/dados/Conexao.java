@@ -6,7 +6,7 @@ import java.sql.SQLException;
 // Classe responsavel pela conexao ao banco de dados
 public class Conexao {
     // endereco em que o servico esta rodando na maquina
-    private static String url = "jdbc.postgresql://localhost:5432/clientes-teste";
+    private static String url = "jdbc:postgresql://localhost:5432/clientes-teste";
     // usuario de acesso ao banco
     private static String userName="postgres";
     // senha de acesso ao banco
@@ -16,7 +16,7 @@ public class Conexao {
     public static Connection criarConexao(){
         try{
             // procura a classe Driver dentro do pacote org.postgresql
-            Class.forName("org.postgresql.Driver");
+           Class.forName("org.postgresql.Driver");
             // retorna o Driver que tentara uma conexao com o banco utilizando o caminho, usuario e senha
             return DriverManager.getConnection(url,userName,password);
             // caso nao encontre a classe Driver lancara uma exception

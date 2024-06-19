@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Cliente {
 
-    private Integer  codigo ;
+    private Integer  codigo = 1;
     private String nome;
     private String CPF;
     private TipoSexo tipoSexo;
@@ -33,8 +33,7 @@ public class Cliente {
 
     }
 
-    public Cliente(Integer codigo,String nome, String CPF, TipoSexo tipoSexo, String dataNascimento, String rua, String numero, String bairro, String cidade, EstadosBrasileiros estado, String telefone, byte[] fotoArray) {
-        this.codigo = codigo;
+    public Cliente(String nome, String CPF, TipoSexo tipoSexo, String dataNascimento, String rua, String numero, String bairro, String cidade, EstadosBrasileiros estado, String telefone, byte[] fotoArray) {
         this.nome = nome;
         this.CPF = CPF;
         this.tipoSexo = tipoSexo;

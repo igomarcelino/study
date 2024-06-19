@@ -1,14 +1,15 @@
 package io.github.igomarcelino.sistema_cadastro_teste.apresentacao;
 
+import io.github.igomarcelino.sistema_cadastro_teste.dados.ClienteDAO;
+import io.github.igomarcelino.sistema_cadastro_teste.dados.Conexao;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Cliente;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.EstadosBrasileiros;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.TipoSexo;
-import io.github.igomarcelino.sistema_cadastro_teste.dominio.Exceptions.CpfValidoException;
 import io.github.igomarcelino.sistema_cadastro_teste.logica.BancoDeDadosFake;
 import io.github.igomarcelino.sistema_cadastro_teste.logica.Cadastro;
+import io.github.igomarcelino.sistema_cadastro_teste.logica.LogicaBancoDeDados;
 import io.github.igomarcelino.sistema_cadastro_teste.utilitarios.ConverterFotoParaArray;
 
-import javax.accessibility.AccessibleRelation;
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
@@ -16,12 +17,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.net.URL;
+import java.sql.Connection;
 import java.text.ParseException;
 
 import static io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.TipoSexo.M;
 
 public class TelaCadastro extends JFrame {
 
+    private JLabel labelCodigo;
+    private JTextField textCodigo;
     private JLabel labelNome;
     private JTextField textNome;
     private JLabel labelCPF;
@@ -52,12 +56,14 @@ public class TelaCadastro extends JFrame {
     private JLabel labelImagem;
     private JButton btnAdicionarImagem;
 
-    private Cadastro<Cliente> bancoMemoria;
+    private Cadastro<Cliente> bancoDados;
 
     // construtor
     public TelaCadastro() {
 
-        bancoMemoria = new BancoDeDadosFake();
+        var conexao = Conexao.criarConexao();
+        ClienteDAO clienteDAO = new ClienteDAO(conexao);
+        bancoDados = new LogicaBancoDeDados(clienteDAO);
         construirTela();
     }
 
@@ -75,6 +81,13 @@ public class TelaCadastro extends JFrame {
 
     //Metodo para adicionar os label e campos na tela
     public void adicionarCampos(){
+
+        labelCodigo = new JLabel("Codigo");
+        labelCodigo.setBounds(480,20,60,20);
+        getContentPane().add(labelCodigo);
+        textCodigo = new JTextField();
+        textCodigo.setBounds(530,20,40,20);
+        getContentPane().add(textCodigo);
 
         labelNome = new JLabel("Nome: ");
         labelNome.setBounds(20,20,60,20);
@@ -183,6 +196,7 @@ public class TelaCadastro extends JFrame {
         btnSalvar.setBounds(20,420,80,20);
         getContentPane().add(btnSalvar);
 
+
         btnSalvar.addActionListener(salvarCliente());
 
         btnLimparCampos = new JButton("Limpar");
@@ -227,13 +241,15 @@ public class TelaCadastro extends JFrame {
                 cliente.setFotoArray(bytes);
 
                 try {
-                    bancoMemoria.salvarCliente(cliente);
-                    bancoMemoria.imprimirCliente(cliente);
+                    bancoDados.salvarCliente(cliente);
+                    bancoDados.imprimirCliente(cliente);
+
                     limparCampos();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null,ex.getMessage());
                 }
             }
+
         };
     }
     //ActionerLister para limpar campos

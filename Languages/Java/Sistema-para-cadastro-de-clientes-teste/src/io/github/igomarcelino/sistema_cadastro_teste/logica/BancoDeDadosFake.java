@@ -8,6 +8,7 @@ import io.github.igomarcelino.sistema_cadastro_teste.utilitarios.PersistenciaDeF
 import javax.imageio.plugins.jpeg.JPEGImageReadParam;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class BancoDeDadosFake implements Cadastro<Cliente> {
 
@@ -28,8 +29,8 @@ public class BancoDeDadosFake implements Cadastro<Cliente> {
     }
 
     @Override
-    public void pesquisarCliente(Cliente cliente) {
-
+    public Optional<Cliente> pesquisarCliente(Cliente cliente) {
+        return Optional.empty();
     }
 
     @Override

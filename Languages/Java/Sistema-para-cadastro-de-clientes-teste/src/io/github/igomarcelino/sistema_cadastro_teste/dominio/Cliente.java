@@ -3,9 +3,12 @@ package io.github.igomarcelino.sistema_cadastro_teste.dominio;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.EstadosBrasileiros;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.TipoSexo;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 
 public class Cliente {
 
+    private Integer  codigo ;
     private String nome;
     private String CPF;
     private TipoSexo tipoSexo;
@@ -27,9 +30,11 @@ public class Cliente {
     }
 
     public Cliente() {
+
     }
 
-    public Cliente(String nome, String CPF, TipoSexo tipoSexo, String dataNascimento, String rua, String numero, String bairro, String cidade, EstadosBrasileiros estado, String telefone, byte[] fotoArray) {
+    public Cliente(Integer codigo,String nome, String CPF, TipoSexo tipoSexo, String dataNascimento, String rua, String numero, String bairro, String cidade, EstadosBrasileiros estado, String telefone, byte[] fotoArray) {
+        this.codigo = codigo;
         this.nome = nome;
         this.CPF = CPF;
         this.tipoSexo = tipoSexo;
@@ -41,7 +46,14 @@ public class Cliente {
         this.estado = estado;
         this.telefone = telefone;
         this.fotoArray = fotoArray;
+
     }
+
+    public Integer getCodigo(){
+        return codigo;
+    }
+
+
 
     public String getNome() {
         return nome;
@@ -144,6 +156,7 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente{" +
+                "codigo='" + codigo + '\''+
                 "nome='" + nome + '\'' +
                 ", CPF='" + CPF + '\'' +
                 ", tipoSexo=" + tipoSexo +

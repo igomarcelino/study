@@ -1,5 +1,7 @@
 import org.apache.commons.math3.stat.regression.SimpleRegression;
 
+import javax.swing.*;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -21,9 +23,16 @@ public class Main {
         double interciptacao = simpleRegression.getIntercept();
         double rQuadrado = simpleRegression.getRSquare();
 
+        String title = "Recursividade com Java";
+
         // exibir resultados
         System.out.println("A inclinacao da reta e : " + inclinacao);
         System.out.println("O ponto de interceptacao e: " + interciptacao);
         System.out.println("O coeficiente R2 e: " + rQuadrado);
+
+        JOptionPane.showMessageDialog(null,String.format("A Equacao e: %.3fx %.3f \nO Coeficiente R2 e: %.4f ",inclinacao,interciptacao,rQuadrado),"Resposta",JOptionPane.INFORMATION_MESSAGE);
+
+
+
     }
 }

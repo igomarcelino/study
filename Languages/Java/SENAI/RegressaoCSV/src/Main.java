@@ -26,6 +26,7 @@ public class Main {
         // salvar caminho de dados em uma string para utilizar no File
         String caminhoCSV = "/home/igo/Dev/git/study/gitStudy/Languages/Java/SENAI/dados.csv";
         List<double[]> dados = LerArquivoCSV.lerArquivoCSV(caminhoCSV);
+        CriarGrafico criarGrafico = new CriarGrafico();
 
 
         //verificar se ha coeficientes nulos
@@ -35,7 +36,7 @@ public class Main {
             System.out.println("Intercpto : " + coeficientes[0]);
             System.out.println("Inclinacao: " + coeficientes[1]);
             System.out.println("Rx2: " + coeficientes[2]);
-            CriarGrafico.criarGrafico(dados,coeficientes);
+            criarGrafico.criarGrafico(dados,coeficientes);
         }else {
             System.out.println("Falha na leitura do arquivo CSV");
         }

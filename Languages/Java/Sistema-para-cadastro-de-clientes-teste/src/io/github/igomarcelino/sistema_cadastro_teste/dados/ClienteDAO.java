@@ -13,7 +13,7 @@ public class ClienteDAO {
 
     // comando sql para inserir clientes
     private static String inserirCliente = """
-                insert into clientes (codigo, nome, cpf, sexo, d_nascimento, rua , numero, bairro, cidade, estado, telefone)
+                insert into clientes ( codigo ,nome, cpf, sexo, d_nascimento, rua , numero, bairro, cidade, estado, telefone)
                         values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
             """;
 
@@ -25,7 +25,7 @@ public class ClienteDAO {
     public void inserirCLiente(Cliente cliente){
         try{
             PreparedStatement conexao = conexaoSQL.prepareStatement(inserirCliente);
-            conexao.setInt(1,cliente.getCodigo());
+            conexao.setInt(1,11);
             conexao.setString(2,cliente.getNome());
             conexao.setString(3, cliente.getCPF());
             conexao.setString(4,cliente.getTipoSexo().name());

@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Cliente {
 
-    private Integer  codigo = 1;
+   private Integer  codigo = 1;
     private String nome;
     private String CPF;
     private TipoSexo tipoSexo;
@@ -155,7 +155,7 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente{" +
-                "codigo='" + codigo + '\''+
+
                 "nome='" + nome + '\'' +
                 ", CPF='" + CPF + '\'' +
                 ", tipoSexo=" + tipoSexo +

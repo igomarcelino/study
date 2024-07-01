@@ -86,6 +86,8 @@ public class TelaCadastro extends JFrame {
         labelCodigo.setBounds(480,20,60,20);
         getContentPane().add(labelCodigo);
         textCodigo = new JTextField();
+        textCodigo.setText(String.valueOf(gerarCodigo()));
+        textCodigo.setEditable(false);
         textCodigo.setBounds(530,20,40,20);
         getContentPane().add(textCodigo);
 
@@ -314,6 +316,10 @@ public class TelaCadastro extends JFrame {
                 }
             }
         };
+    }
+    public int gerarCodigo(){
+        int codigoAtual = bancoDados.gerarCodigo() + 1;
+        return codigoAtual;
     }
 }
 

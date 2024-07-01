@@ -44,4 +44,9 @@ public class BancoDeDadosFake implements Cadastro<Cliente> {
         System.out.println(cliente);
 
     }
+
+    @Override
+    public int gerarCodigo() {
+        return 0;
+    }
 }

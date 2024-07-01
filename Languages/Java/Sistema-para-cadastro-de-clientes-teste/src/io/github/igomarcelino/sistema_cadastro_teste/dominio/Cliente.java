@@ -3,8 +3,6 @@ package io.github.igomarcelino.sistema_cadastro_teste.dominio;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.EstadosBrasileiros;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.TipoSexo;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 
 public class Cliente {
 

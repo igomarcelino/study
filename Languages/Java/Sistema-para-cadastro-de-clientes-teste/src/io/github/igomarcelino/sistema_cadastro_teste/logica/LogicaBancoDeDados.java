@@ -40,4 +40,9 @@ public class LogicaBancoDeDados implements Cadastro<Cliente> {
     public void imprimirCliente(Cliente cliente) {
 
     }
+    public  int gerarCodigo(){
+
+        int codigoAtual = clienteDAO.contarRegistros() ;
+        return codigoAtual;
+    }
 }

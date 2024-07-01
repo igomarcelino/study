@@ -11,5 +11,6 @@ public interface Cadastro<TIPO> {
     Optional<Cliente> pesquisarCliente(TIPO tipo);
     void deletarCliente(TIPO tipo);
     void imprimirCliente(TIPO tipo);
+    int gerarCodigo();
 
 }

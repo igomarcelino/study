@@ -11,7 +11,7 @@ html{
 body{
     margin: 15vh auto auto auto;
     height: 90vh;
-    background-image: url('../imagens/vista-superior-do-conceito-de-carne-com-espaco-de-copia.jpg');
+    background-image: url('../imagens/vista-superior-do-conceito-de-carne-com-espaco-de-copia.png');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -27,7 +27,7 @@ body{
     margin-left: 20rem;
     font-family: "Fredericka the Great", serif;
     font-weight: 300;
-    background-image: url('../imagens/quadro-lousa-negro-blackboard-para-escrever-com-giz-69027.png');
+    background-image: url('../imagens/quadro-lousa-negro-blackboard-pa.png');
     background-repeat: no-repeat;
     background-position: center center;
 
@@ -58,6 +58,7 @@ body{
     width: 3rem;
     text-align: center;
     align-items: right;
+    border-radius: 0.3rem;
 }
 
 #calculadoraChurrasco li{

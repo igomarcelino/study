@@ -1,12 +1,14 @@
-
+var homens = 0;
+var mulheres = 0;
+var criancas = 0;
 
 document.getElementById('btnCalcular').addEventListener('click',function(){
 
     // obtendo os valores dos input
 
-    var homens = parseInt(document.getElementById('homens').value,10) ;
-    var mulheres = parseInt(document.getElementById('mulheres').value,10);
-    var criancas = parseInt(document.getElementById('criancas').value,10);
+    homens = parseInt(document.getElementById('homens').value,10) ;
+    mulheres = parseInt(document.getElementById('mulheres').value,10);
+    criancas = parseInt(document.getElementById('criancas').value,10);
 
     /**
      * calculando os valores utilizando a tabela como referencia
@@ -37,11 +39,11 @@ document.getElementById('btnCalcular').addEventListener('click',function(){
     var refrigerante = (homens * 0.300) + (mulheres* 0.400) + (criancas * 0.200);
     var cerveja = (homens * 0.800) + (mulheres* 0.400);
 
-    console.log(refrigerante)
     //atribuindo a lista em uma variavel
 
     var lista = document.getElementById('listaItens');
 
+    // apagando a lista
     lista.innerHTML = '';
 
     // Criando os elementos li
@@ -52,18 +54,33 @@ document.getElementById('btnCalcular').addEventListener('click',function(){
     var liCerveja = document.createElement('li');
 
     // atribuindo os valores das variaveis de quantidade e concatenando com suas descricoes de quantidades
-    liCarneBovina.textContent = carneBovina.toFixed(1) + 'Kg de carne bovina';
-    liFrango.textContent = frango.toFixed(1) + 'Kg de frango';
-    liLinguica.textContent = linguica.toFixed(1) + 'Kg de linguica';
-    if(refrigerante >= 1){
-        liRefrigerante.textContent = refrigerante.toFixed(1) + 'l de refrigerante';
-    }else{
+    if( !isNaN(homens && mulheres && criancas) ){
+        liCarneBovina.textContent = carneBovina.toFixed(1) + 'Kg de carne bovina';
+        liFrango.textContent = frango.toFixed(1) + 'Kg de frango';
+        liLinguica.textContent = linguica.toFixed(1) + 'Kg de linguica';
+        if(refrigerante >= 1){
+            liRefrigerante.textContent = refrigerante.toFixed(1) + 'l de refrigerante';
+        }else{
         liRefrigerante.textContent = refrigerante.toFixed(3) + 'ml de refrigerante';
-    }
-    if(cerveja >= 1){
-        liCerveja.textContent = cerveja.toFixed(1) + 'l de cerveja';
+        }
+        if(cerveja >= 1){
+            liCerveja.textContent = cerveja.toFixed(1) + 'l de cerveja';
+        }else{
+            liCerveja.textContent = cerveja.toFixed(3) + '  ml de cerveja';
+        }
     }else{
-        liCerveja.textContent = cerveja.toFixed(3) + '  ml de cerveja';
+        alert('Proibido campos vazio!!');
+        liCarneBovina.textContent='Kg carne bovina';
+        liFrango.textContent = 'Kg de frango';
+        liLinguica.textContent = 'Kg de linguica';
+        liRefrigerante.textContent = 'l de refrigerante';
+        liCerveja.textContent = 'l de cerveja';
+        lista.appendChild(liCarneBovina);
+        lista.appendChild(liFrango);
+        lista.appendChild(liLinguica);
+        lista.appendChild(liRefrigerante);
+        lista.appendChild(liCerveja);
+        console.log(criancas);
     }
     
 

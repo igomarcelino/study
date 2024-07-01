@@ -46,6 +46,10 @@ public class Cliente {
 
     }
 
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
+
     public Integer getCodigo(){
         return codigo;
     }

@@ -73,7 +73,7 @@ public class TelaCadastro extends JFrame {
         setSize(600,600);
         setTitle("Cadastro de Clientes");
         setLayout(null);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         adicionarCampos();
         adicionarBotao();
@@ -228,6 +228,7 @@ public class TelaCadastro extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Cliente cliente = new Cliente();
+                cliente.setCodigo(Integer.valueOf(textCodigo.getText()));
                 cliente.setNome(textNome.getText());
                 cliente.setCPF(textCPF.getText());
                 cliente.setTipoSexo((TipoSexo) comboBoxTipoSexo.getSelectedItem());
@@ -265,6 +266,7 @@ public class TelaCadastro extends JFrame {
     }
     // Metodo para limpar campos ao salvar
     public void limparCampos() {
+        textCodigo.setText(String.valueOf(bancoDados.gerarCodigo()));
         textNome.setText(null);
         textCPF.setText(null);
         comboBoxTipoSexo.setSelectedItem(null);
@@ -282,7 +284,7 @@ public class TelaCadastro extends JFrame {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+               TelaCadastro.this.dispose();
 
             }
         };

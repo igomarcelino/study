@@ -14,7 +14,7 @@ public class ClienteDAO {
 
     // comando sql para inserir clientes
     private static String inserirCliente = """
-                insert into clientes ( codigo ,nome, cpf, sexo, d_nascimento, rua , numero, bairro, cidade, estado, telefone)
+                insert into clientes ( cod_cliente ,nome, cpf, sexo, d_nascimento, rua , numero, bairro, cidade, estado, telefone)
                         values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
             """;
     private static String selecionarClientes = "select *from clientes";

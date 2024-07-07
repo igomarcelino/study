@@ -245,13 +245,14 @@ public class TelaCadastro extends JFrame {
 
                 try {
                     bancoDados.salvarCliente(cliente);
-                    bancoDados.imprimirCliente(cliente);
+                    setVisible(false);
 
                     limparCampos();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null,ex.getMessage());
                 }
             }
+
 
         };
     }

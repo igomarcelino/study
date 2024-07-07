@@ -2,10 +2,9 @@ package io.github.igomarcelino.sistema_cadastro_teste.logica;
 
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Cliente;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Exceptions.CpfValidoException;
-import io.github.igomarcelino.sistema_cadastro_teste.utilitarios.ConverterFotoParaArray;
+import io.github.igomarcelino.sistema_cadastro_teste.dominio.ListarCliente;
 import io.github.igomarcelino.sistema_cadastro_teste.utilitarios.PersistenciaDeFoto;
 
-import javax.imageio.plugins.jpeg.JPEGImageReadParam;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +28,7 @@ public class BancoDeDadosFake implements Cadastro<Cliente> {
     }
 
     @Override
-    public Optional<Cliente> pesquisarCliente(Cliente cliente) {
+    public Optional<ListarCliente> pesquisarCliente(String cpf) {
         return Optional.empty();
     }
 
@@ -39,9 +38,9 @@ public class BancoDeDadosFake implements Cadastro<Cliente> {
     }
 
     @Override
-    public void imprimirCliente(Cliente cliente) {
+    public List<ListarCliente> imprimirCliente( ) {
 
-        System.out.println(cliente);
+        return null;
 
     }
 

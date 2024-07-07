@@ -1,13 +1,14 @@
 package io.github.igomarcelino.sistema_cadastro_teste.logica;
 
 import io.github.igomarcelino.sistema_cadastro_teste.dados.ClienteDAO;
-import io.github.igomarcelino.sistema_cadastro_teste.dados.Conexao;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Cliente;
+import io.github.igomarcelino.sistema_cadastro_teste.dominio.ListarCliente;
 
 import javax.swing.*;
+import java.util.List;
 import java.util.Optional;
 
-public class LogicaBancoDeDados implements Cadastro<Cliente> {
+public class LogicaBancoDeDados implements Cadastro<Cliente>   {
 
     ClienteDAO clienteDAO;
 
@@ -19,16 +20,13 @@ public class LogicaBancoDeDados implements Cadastro<Cliente> {
     public void salvarCliente(Cliente cliente) throws Exception {
         ValidaCliente.validarCliente(cliente);
         clienteDAO.inserirCLiente(cliente);
-
-
-
-
         JOptionPane.showMessageDialog(null,"Cadastro realizado com sucesso!");
     }
 
     @Override
-    public Optional<Cliente> pesquisarCliente(Cliente cliente) {
-        return Optional.empty();
+    public Optional<ListarCliente> pesquisarCliente(String cpf) {
+
+        return clienteDAO.procurarCliente(cpf).or(() -> Optional.empty());
     }
 
     @Override
@@ -37,8 +35,8 @@ public class LogicaBancoDeDados implements Cadastro<Cliente> {
     }
 
     @Override
-    public void imprimirCliente(Cliente cliente) {
-
+    public List<ListarCliente> imprimirCliente() {
+        return clienteDAO.listarClientes();
     }
     public  int gerarCodigo(){
 

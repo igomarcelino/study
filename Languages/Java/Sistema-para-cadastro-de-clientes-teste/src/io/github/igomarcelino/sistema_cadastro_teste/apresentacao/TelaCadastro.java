@@ -5,7 +5,6 @@ import io.github.igomarcelino.sistema_cadastro_teste.dados.Conexao;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Cliente;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.EstadosBrasileiros;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.TipoSexo;
-import io.github.igomarcelino.sistema_cadastro_teste.logica.BancoDeDadosFake;
 import io.github.igomarcelino.sistema_cadastro_teste.logica.Cadastro;
 import io.github.igomarcelino.sistema_cadastro_teste.logica.LogicaBancoDeDados;
 import io.github.igomarcelino.sistema_cadastro_teste.utilitarios.ConverterFotoParaArray;
@@ -17,7 +16,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.net.URL;
-import java.sql.Connection;
 import java.text.ParseException;
 
 import static io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.TipoSexo.M;
@@ -125,12 +123,6 @@ public class TelaCadastro extends JFrame {
         textDataNascimento = new JFormattedTextField(dataFormater);
         textDataNascimento.setBounds(130,140,100,20);
         getContentPane().add(textDataNascimento);
-
-      /*  // Endereco
-
-        labelEndereco = new JLabel(" --------------------------- Endereco ------------------------------");
-        labelEndereco.setBounds(20,160,100,20);
-        getContentPane().add(labelEndereco);*/
 
 
         labelRua = new JLabel("rua: ");

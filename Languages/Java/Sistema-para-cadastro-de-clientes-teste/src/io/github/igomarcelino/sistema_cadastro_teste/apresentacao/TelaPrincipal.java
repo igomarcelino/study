@@ -5,6 +5,7 @@ import io.github.igomarcelino.sistema_cadastro_teste.dados.Conexao;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.ListarCliente;
 import io.github.igomarcelino.sistema_cadastro_teste.logica.LogicaBancoDeDados;
 
+import javax.accessibility.AccessibleTable;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -66,7 +67,8 @@ public class TelaPrincipal extends JFrame {
 
         // actionerListener
         novoCliente.addActionListener(novoCliente());
-
+        atualizarCliente.addActionListener(atualizarCliente());
+        deletarCliente.addActionListener(deletarCliente());
     }
 
     public void menuRelatorio(){
@@ -127,5 +129,24 @@ public class TelaPrincipal extends JFrame {
         };
     }
 
+    public ActionListener atualizarCliente(){
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TelaAtualizar telaAtualizar = new TelaAtualizar();
+                telaAtualizar.setVisible(true);
+            }
+        };
+    }
+
+    public ActionListener deletarCliente(){
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TelaDeletarCliente telaDeletarCliente = new TelaDeletarCliente();
+                telaDeletarCliente.setVisible(true);
+            }
+        };
+    }
 
 }

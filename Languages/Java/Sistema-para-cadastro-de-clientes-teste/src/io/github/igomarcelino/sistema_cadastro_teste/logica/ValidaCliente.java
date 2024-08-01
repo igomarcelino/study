@@ -1,25 +1,33 @@
 package io.github.igomarcelino.sistema_cadastro_teste.logica;
 
+import io.github.igomarcelino.sistema_cadastro_teste.dados.ClienteDAO;
+import io.github.igomarcelino.sistema_cadastro_teste.dados.Conexao;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Cliente;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Exceptions.CpfValidoException;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Exceptions.DadosObrigatoriosException;
+import io.github.igomarcelino.sistema_cadastro_teste.dominio.ListarCliente;
 
 public class ValidaCliente {
+
+    public static LogicaBancoDeDados logicaBancoDeDados = new LogicaBancoDeDados(new ClienteDAO(Conexao.criarConexao()));
 
     public static void validarCliente(Cliente cliente) throws CpfValidoException{
 
         if(cliente.getCPF().length() != 11 ){
             throw new CpfValidoException("CPF invalido");
+        } else if (!logicaBancoDeDados.pesquisarCliente(cliente.getCPF()).isEmpty()) {
+            throw new CpfValidoException("CPF ja cadastrado");
+        } else {
+            validarNome(cliente);
+            validarTipoSexo(cliente);
+            validarDataNascimento(cliente);
+            validarRua(cliente);
+            validarNumeroCasa(cliente);
+            validarBairro(cliente);
+            validarCidade(cliente);
+            validarTelefone(cliente);
         }
 
-        validarNome(cliente);
-        validarTipoSexo(cliente);
-        validarDataNascimento(cliente);
-        validarRua(cliente);
-        validarNumeroCasa(cliente);
-        validarBairro(cliente);
-        validarCidade(cliente);
-        validarTelefone(cliente);
 
     }
 
@@ -36,7 +44,7 @@ public class ValidaCliente {
     }
 
     private static void validarDataNascimento(Cliente cliente){
-        if(cliente.getDataNascimento().equals(null) || cliente.getDataNascimento().isBlank()){
+        if(cliente.getDataNascimento().length() < 10 || cliente.getDataNascimento().isBlank()){
             throw new DadosObrigatoriosException("Data de nascimento obrigatorio!");
         }
     }

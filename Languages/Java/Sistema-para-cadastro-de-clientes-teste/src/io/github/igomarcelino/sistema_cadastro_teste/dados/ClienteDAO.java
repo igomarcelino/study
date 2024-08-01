@@ -1,8 +1,12 @@
 package io.github.igomarcelino.sistema_cadastro_teste.dados;
 
+import io.github.igomarcelino.sistema_cadastro_teste.dominio.BuscaCliente;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Cliente;
+import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.EstadosBrasileiros;
+import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.TipoSexo;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.ListarCliente;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,6 +28,22 @@ public class ClienteDAO {
     private static String selecionarClientes = "select *from clientes";
 
     private static String procurarClientes = "select *from clientes where cpf = ?";
+
+    private static String deletarCliente = "DELETE FROM clientes WHERE cpf = ?";
+
+    private static String atualizarClientes = """
+            UPDATE clientes
+                SET nome = ?,
+                    d_nascimento = ?,
+                    rua = ?,
+                    numero = ?,
+                    bairro = ?,
+                    cidade = ?,
+                    estado = ?,
+                    telefone = ?
+                    WHERE cpf = ?;
+            """;
+
     // metodo construtor que recebe uma connection
     public ClienteDAO(Connection connection) {
         this.conexaoSQL = connection;
@@ -104,18 +124,35 @@ public class ClienteDAO {
         return clienteList;
     }
 
-    public Optional<ListarCliente> procurarCliente(String cpf){
+    public Optional<BuscaCliente> procurarCliente(String cpf_cliente){
         try {
             PreparedStatement conexao = conexaoSQL.prepareStatement(procurarClientes);
-            conexao.setString(1,cpf);
+            conexao.setString(1,cpf_cliente);
             ResultSet resultSet = conexao.executeQuery();
             if (resultSet.next()){
-                 int codigo = resultSet.getInt("cod_cliente");
                  String nome = resultSet.getString("nome");
-                 String sexo = resultSet.getString("sexo");
-                 String dataNascimento = resultSet.getString("d_nascimento");
-                 ListarCliente  clienteEncontrado = new ListarCliente(codigo,nome,sexo.charAt(0),dataNascimento);
-                 return Optional.of(clienteEncontrado);
+                 String cpf = resultSet.getString("cpf");
+                 String d_nascimento = resultSet.getString("d_nascimento");
+                 String rua = resultSet.getString("rua");
+                 String numero = resultSet.getString("numero");
+                 String bairro = resultSet.getString("bairro");
+                 String cidade = resultSet.getString("cidade");
+                 String estado = resultSet.getString("estado");
+                 String telefone = resultSet.getString("telefone");
+
+                 BuscaCliente buscaCliente = new BuscaCliente();
+                 buscaCliente.setNome(nome);
+                 buscaCliente.setCPF(cpf);
+                 buscaCliente.setDataNascimento(d_nascimento);
+                 buscaCliente.setRua(rua);
+                 buscaCliente.setNumero(numero);
+                 buscaCliente.setBairro(bairro);
+                 buscaCliente.setCidade(cidade);
+                 buscaCliente.setEstado(EstadosBrasileiros.valueOf(estado));
+                 buscaCliente.setTelefone(telefone);
+
+                 Optional<BuscaCliente> optionalBuscaCliente = Optional.of(buscaCliente);
+                 return optionalBuscaCliente;
             }
 
         }catch (SQLException e){
@@ -123,6 +160,38 @@ public class ClienteDAO {
         }
 
         return Optional.empty();
+
+    }
+
+    public void atualizarClientes(BuscaCliente cliente){
+        try{
+            PreparedStatement conexao = conexaoSQL.prepareStatement(atualizarClientes);
+            conexao.setString(1,cliente.getNome());
+            conexao.setString(2,cliente.getDataNascimento());
+            conexao.setString(3,cliente.getRua());
+            conexao.setString(4,cliente.getNumero());
+            conexao.setString(5,cliente.getBairro());
+            conexao.setString(6,cliente.getCidade());
+            conexao.setString(7,cliente.getEstado().name());
+            conexao.setString(8,cliente.getTelefone());
+            conexao.setString(9,cliente.getCPF());
+            conexao.execute();
+
+
+        }catch (SQLException e){
+            throw new RuntimeException("Atualizar cliente, dados incorretos");
+        }
+    }
+
+    public void deletarCliente(String cpf){
+            try{
+                PreparedStatement conexao = conexaoSQL.prepareStatement(deletarCliente);
+                conexao.setString(1,cpf);
+                conexao.execute();
+                conexao.close();
+            }catch (SQLException e ){
+                throw new RuntimeException(e);
+            }
     }
 
 }

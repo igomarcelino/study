@@ -59,7 +59,7 @@ public class TelaDeletarCliente extends JFrame {
     public void adicionaCampos(){
 
         // campo pesquisar
-        labelCliente = new JLabel("Nome do cliente: ");
+        labelCliente = new JLabel("CPF do cliente: ");
         labelCliente.setBounds(20,20,150,20);
         getContentPane().add(labelCliente);
 

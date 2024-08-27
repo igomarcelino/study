@@ -313,8 +313,8 @@ public class TelaCadastro extends JFrame {
         };
     }
     public int gerarCodigo(){
-        int codigoAtual = bancoDados.gerarCodigo() + 1;
-        return codigoAtual;
+        int codigoAtual = bancoDados.gerarCodigo();
+        return codigoAtual + 1;
     }
 }
 

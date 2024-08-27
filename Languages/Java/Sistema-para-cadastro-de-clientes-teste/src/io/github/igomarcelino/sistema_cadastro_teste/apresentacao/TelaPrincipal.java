@@ -30,14 +30,18 @@ public class TelaPrincipal extends JFrame {
     }
 
     public void criarTela()  {
+        setTitle("Cadastro Clientes");
+        setSize(600,400);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+
         menuBar();
 
     }
 
     private void menuBar() {
-        // COnfdigura a menu bar
-        setTitle("Cadastro Clientes");
-        setSize(600,400);
+        // COnfigura a menu bar
+
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 

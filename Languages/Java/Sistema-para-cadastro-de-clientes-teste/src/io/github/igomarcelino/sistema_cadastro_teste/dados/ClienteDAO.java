@@ -73,7 +73,6 @@ public class ClienteDAO {
         }finally {
             try {
                 if (!conexaoSQL.isClosed()){
-                    conexaoSQL.close();
                 }
             } catch (SQLException e) {
                 System.out.println("Fechando conexao");
@@ -82,19 +81,19 @@ public class ClienteDAO {
     }
 
     public int contarRegistros(){
-        int quantidadeRegistros = 0;
+        int codigo_cliente = 0;
         try{
             PreparedStatement conexao = conexaoSQL.prepareStatement(selecionarClientes);
             ResultSet resultado = conexao.executeQuery();
-            while (resultado.next()){
-                quantidadeRegistros++;
+            while(resultado.next()){
+                codigo_cliente = resultado.getInt("cod_cliente");
             }
 
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
 
-        return quantidadeRegistros;
+        return codigo_cliente;
     }
 
     public List<ListarCliente> listarClientes()  {

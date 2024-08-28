@@ -55,7 +55,7 @@ public class LogicaBancoDeDados implements Cadastro<Cliente>   {
 
     public  int gerarCodigo(){
 
-        int codigoAtual = clienteDAO.contarRegistros() ;
+        int codigoAtual = clienteDAO.pegarCodigoCliente() ;
         return codigoAtual;
     }
 }

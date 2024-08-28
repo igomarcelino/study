@@ -3,10 +3,8 @@ package io.github.igomarcelino.sistema_cadastro_teste.dados;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.BuscaCliente;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Cliente;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.EstadosBrasileiros;
-import io.github.igomarcelino.sistema_cadastro_teste.dominio.Enuns.TipoSexo;
 import io.github.igomarcelino.sistema_cadastro_teste.dominio.ListarCliente;
 
-import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -80,7 +78,7 @@ public class ClienteDAO {
         }
     }
 
-    public int contarRegistros(){
+    public int pegarCodigoCliente(){
         int codigo_cliente = 0;
         try{
             PreparedStatement conexao = conexaoSQL.prepareStatement(selecionarClientes);
@@ -88,6 +86,8 @@ public class ClienteDAO {
             while(resultado.next()){
                 codigo_cliente = resultado.getInt("cod_cliente");
             }
+
+
 
         }catch (SQLException e){
             throw new RuntimeException(e);

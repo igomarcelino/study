@@ -10,14 +10,11 @@ import java.util.stream.Stream;
 public class TesteClass {
     public static void main(String[] args) {
 
-        Produto computador = new Computador("Nq1000", 1340.00);
-        Produto tomate = new Tomato("Tomate liso", 40);
-
-        CalculadoraImposto.impostoComputador((Computador) computador);
-        CalculadoraImposto.impostoTomate((Tomato) tomate);
+        boolean verifica = pertenceFibonacci(4);
+        System.out.println(verifica);
     }
 
-    public static boolean validatePin(String pin) {
+    /*public static boolean validatePin(String pin) {
         // Your code here...
 
         return pin.matches("\\d{4}|\\d{6}");
@@ -32,6 +29,25 @@ public class TesteClass {
     }
     public static String verificarQuedaConexao(String[] velocidades) {
         return Arrays.stream(velocidades).anyMatch(conexao -> conexao.equalsIgnoreCase("0")) ? "Queda de Conexao": "Sem Quedas";
+    }*/
+
+    public static boolean pertenceFibonacci(int numero) {
+        int a = 0;
+        int b = 1;
+        int c = a + b;
+
+        if (numero == a || numero == b) {
+            return true;
+        }
+        while (c <= numero) {
+            if (c == numero) {
+                return true;
+            }
+            a = b;
+            b = c;
+            c = a + b;
+        }
+        return false;
     }
 
 }

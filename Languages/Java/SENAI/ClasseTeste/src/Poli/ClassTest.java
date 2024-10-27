@@ -1,12 +1,25 @@
 package Poli;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class ClassTest {
     public static void main(String[] args) {
 
-        String fibo = fibo(6000);
-        System.out.println(fibo);
+      
+    }
+
+    public static int[] twoSum(int[] nums, int target) {
+        int[] numbers = {0,0};
+        for (int i = 0; i < nums.length -1 ; i++){
+            for (int j = i+1;j <= nums.length -1 ;j++){
+                if (nums[i] + nums[j] == target){
+                    numbers[0] = i;
+                    numbers[1] = j;
+                }
+            }
+        }
+        return numbers;
     }
 
     public static long sumTwoSmallestNumbers(final long[] numbers) {

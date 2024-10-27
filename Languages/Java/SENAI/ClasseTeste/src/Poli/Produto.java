@@ -2,6 +2,7 @@ package Poli;
 
 public abstract  class Produto implements Taxa {
     String nome;
+    protected int quantidade;
     double preco;
 
     public Produto(String nome, double preco) {

@@ -1,7 +1,11 @@
 package igo.primeiro_projeto.singletonOUprototype;
 
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
+@ConfigurationProperties(prefix = "remetente")
 public class Remetente {
 
     private String nome;

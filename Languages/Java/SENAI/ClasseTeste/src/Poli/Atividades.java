@@ -1,6 +1,6 @@
 package Poli;
 
-public class Atividades extends Produto,Pessoa{
+public class Atividades extends Pessoa{
     public static void main(String[] args) {
         int x = 0;
         for (int i = 0; i < 10 ; i++){
@@ -21,10 +21,6 @@ public class Atividades extends Produto,Pessoa{
     }
 
 
-    @Override
-    public double taxacao() {
 
-
-    }
 }
 

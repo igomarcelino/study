@@ -5,19 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="622399ee-8a5e-4f10-abd0-37a7bb2dc6a5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../SENAI/ClasseTeste/src/Poli/Atividades.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../SENAI/ClasseTeste/src/Poli/InstrumentoMusical.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../SENAI/ClasseTeste/src/Poli/OlaMundo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../SENAI/ClasseTeste/src/Poli/Pessoa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../quick-start-maven/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../quick-start-maven/src/main/java/one/digitalinnovation/BinanySearch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../quick-start-maven/src/main/java/one/digitalinnovation/Pessoa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../quick-start-maven/src/test/java/one/digitalinnovation/PessoaTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Desafio-abstracao-com-java/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Desafio-abstracao-com-java/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SENAI/ClasseTeste/out/production/ClasseTeste/Poli/ClassTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SENAI/ClasseTeste/out/production/ClasseTeste/Poli/ClassTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SENAI/ClasseTeste/out/production/ClasseTeste/Poli/Produto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SENAI/ClasseTeste/src/Poli/ClassTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SENAI/ClasseTeste/src/Poli/ClassTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SENAI/ClasseTeste/src/Poli/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SENAI/ClasseTeste/src/Poli/Produto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SENAI/ClasseTeste/src/Poli/DesviosIncondicionais.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SENAI/ClasseTeste/src/Poli/Atividades.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SENAI/ClasseTeste/src/Poli/Atividades.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ganhando_produtividade_com_Stream_API_Java" beforeDir="false" afterPath="$PROJECT_DIR$/../ganhando_produtividade_com_Stream_API_Java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,17 +47,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/igo/Dev/git/study/gitStudy/Languages/Java/Spring/primeiro-projeto",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.keymap"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/igo/Dev/git/study/gitStudy/Languages/Java/Spring/primeiro-projeto&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="igo.primeiro_projeto" />
